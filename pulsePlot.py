@@ -1,0 +1,25 @@
+import pandas as pd
+import numpy as np
+from matplotlib import pyplot
+df = pd.read_csv("Run78_pulses.ant", header=None, names=["del","evt", "tInRun", "tBetweenEvents","nPulses","nCh0Pulses","nCh1Pulses","nCh2Pulses","nCh3Pulses","RMSnoise","channel","pulseNumber","pulseTime","pulseArea","pulseHeight","pulseWidth"], sep=" ")
+del df["del"]
+pyplot.hist(df["pulseHeight"], bins=200)
+pyplot.xlabel("pulse height [mV]")
+pyplot.ylabel("number of pulses")
+pyplot.yscale("log")
+pyplot.show()
+pyplot.hist(df["tBetweenEvents"], bins=200)
+pyplot.xlabel("time between events [s]")
+pyplot.ylabel("number of events")
+pyplot.yscale("log")
+pyplot.show()
+pyplot.hist(df.loc[df["channel"]==1]["pulseArea"], bins=200)
+pyplot.xlabel("pulseArea [nVs] in channel 1")
+pyplot.ylabel("number of pulses")
+pyplot.yscale("log")
+pyplot.show()
+pyplot.hist(df["pulseTime"], bins=200)
+pyplot.xlabel("event time [s]")
+pyplot.ylabel("number of events")
+pyplot.yscale("log")
+pyplot.show()
